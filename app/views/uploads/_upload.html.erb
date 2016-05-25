@@ -1,3 +1,4 @@
-<div>
-  <h4><%= upload.filename &></h4>
+<div class="row">
+  <%= upload.filename %>
+  <%= link_to "Delete", upload_path(upload), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>

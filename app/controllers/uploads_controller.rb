@@ -17,6 +17,13 @@ class UploadsController < ApplicationController
     end
   end
 
+  def destroy
+    @upload = Upload.find(params[:id])
+    @upload.destroy
+    flash[:success] = "File deleted"
+    redirect_to root_path
+  end
+
   private
 
   def upload_params
