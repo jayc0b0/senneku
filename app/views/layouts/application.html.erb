@@ -8,7 +8,36 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+            <%= link_to root_path do %>
+              <h3 class="masthead-brand">senneku</h3>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="inner cover" id="primary-content">
+          <%= yield %>
+        </div>
+        
+        <div class="mastfoot">
+          <div class="inner">
+            <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            <p>webapp by <a href="http://www.github.com/jayc0b0/">jayc0b0</a> and <a href="http://www.github.com/Stereo101/">Stereo101</a></p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<div class="page-header"><h1>Upload Photo</h1></div>
+<div class="page-header"><h1>New Upload</h1></div>
 
 <%= form_for @upload do |f| %>
   <%= render 'shared/errors', object: @upload %>
@@ -13,5 +13,5 @@
     <%= f.file_field :upload, class: 'form-control' %>
   </div>
 
-  <%= f.submit 'Upload', class: 'btn btn-primary' %>
+  <%= f.submit 'Upload', class: 'btn btn-default btn-lg' %>
 <% end %>
