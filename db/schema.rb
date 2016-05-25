@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525045547) do
+ActiveRecord::Schema.define(version: 20160525164859) do
 
   create_table "uploads", force: :cascade do |t|
     t.string   "filename"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160525045547) do
     t.integer  "click_count"
     t.datetime "delete_on"
     t.integer  "delete_in"
+    t.string   "md5_hash"
+    t.string   "sha256_hash"
   end
 
 end

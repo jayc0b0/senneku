@@ -9,6 +9,12 @@ class UploadsController < ApplicationController
 
   def create
     @upload = Upload.new(upload_params)
+    # Set default deletion time
+    @upload.delete_in = 14 if @upload.delete_in.nil?
+    @upload.delete_on = Time.now + @upload.delete_in.days
+    # Set clicks to 0
+    @upload.click_count = 0
+
     if @upload.save
       flash[:success] = "File uploaded"
       redirect_to root_path
@@ -24,9 +30,15 @@ class UploadsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+  end
+
+  def download
+  end
+
   private
 
   def upload_params
-    params.require(:upload).permit(:upload, :filename)
+    params.require(:upload).permit(:upload, :filename, :delete_in, :click_limit)
   end
 end
