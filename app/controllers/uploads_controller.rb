@@ -20,7 +20,7 @@ class UploadsController < ApplicationController
 
     if @upload.save
       flash[:success] = "File uploaded"
-      redirect_to root_path
+      redirect_to upload_path(@upload)
     else
       render 'new'
     end
