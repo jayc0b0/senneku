@@ -12,7 +12,10 @@ class UploadsController < ApplicationController
     # Set default deletion time
     @upload.delete_in = 14 if @upload.delete_in.nil?
     @upload.delete_on = Time.now + @upload.delete_in.days
-    # Set clicks to 0
+    # Set click tracking to false if nothing set
+    @upload.track_clicks = false if @upload.track_clicks.nil?
+    @upload.click_limit = -1 if @upload.track_clicks == false
+    # Set click count to 0
     @upload.click_count = 0
 
     if @upload.save
@@ -31,6 +34,7 @@ class UploadsController < ApplicationController
   end
 
   def show
+    @upload = Upload.find(params[:id])
   end
 
   def download
@@ -39,6 +43,6 @@ class UploadsController < ApplicationController
   private
 
   def upload_params
-    params.require(:upload).permit(:upload, :filename, :delete_in, :click_limit)
+    params.require(:upload).permit(:upload, :filename, :delete_in, :track_clicks, :click_limit)
   end
 end

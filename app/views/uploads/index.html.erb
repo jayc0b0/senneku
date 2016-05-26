@@ -5,6 +5,9 @@
     <th>Filename</th>
     <th>Delete In (Days)</th>
     <th>Delete On (Date)</th>
+    <th>Track Clicks?</th>
+    <th>Clicks Counted</th>
+    <th>Max Clicks</th>
   </tr>
  
   <% @uploads.each do |upload| %>
@@ -12,6 +15,9 @@
       <td><%= upload.filename %></td>
       <td><%= upload.delete_in %></td>
       <td><%= upload.delete_on %></td>
+      <td><%= upload.track_clicks %></td>
+      <td><%= upload.click_count %></td>
+      <td><%= upload.click_limit %></td>
       <td><%= link_to "Delete", upload_path(upload), method: :delete, data: {confirm: "Are you sure?"} %></td>
       <td><%= link_to "Download", upload %></td>
     </tr>
