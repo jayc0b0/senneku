@@ -40,8 +40,19 @@ class UploadsController < ApplicationController
 
   def download
     @upload = Upload.find(params[:id])
-    file_path = "#{@upload.upload.path}"
-    send_file(file_path)
+    # Increment click count
+    @upload.click_count += 1
+    # Check if click count is above limit
+    if @upload.click_count > @upload.click_limit
+      not_found
+    else
+      file_path = "#{@upload.upload.path}"
+      send_file(file_path)
+    end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   private
