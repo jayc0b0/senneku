@@ -1,7 +1,0 @@
-<div class="row text-justify">
-  <%= upload.filename %>
-  <%= upload.delete_in %>
-  <%= upload.delete_on %>
-  <%= link_to "Delete", upload_path(upload), method: :delete, data: {confirm: "Are you sure?"} %>
-  <%= link_to "Download", upload_path(upload), method: :show %>
-</div>
