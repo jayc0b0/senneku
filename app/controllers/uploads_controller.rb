@@ -31,29 +31,41 @@ class UploadsController < ApplicationController
     @upload = Upload.find_by(params[:id])
     @upload.destroy
     flash[:success] = "File deleted"
-    redirect_to uploads_path
+    redirect_to root_path
   end
 
   def show
-    @upload = Upload.find_by(params[:id])
+    # Redirect if file does not exist
+    if Upload.find_by(params[:id]).nil?
+      not_found
+    else
+      @upload = Upload.find_by(params[:id])
+    end
   end
 
   def download
     @upload = Upload.find_by(params[:id])
-    # Increment click count
-    @upload.click_count += 1
-    @upload.save
-    # Check if click count is above limit
-    if @upload.click_count > @upload.click_limit
+    # Catch nil records
+    unless @upload.nil?
+      # Increment click count
+      @upload.increment!(:click_count)
+      # Check if click count is above limit
+      if @upload.click_count > @upload.click_limit
+        destroy
+        not_found
+      else
+        file_path = "#{@upload.upload.path}"
+        send_file(file_path)
+      end
+    end
+    # Redirect if nil
+    if @upload.nil?
       not_found
-    else
-      file_path = "#{@upload.upload.path}"
-      send_file(file_path)
     end
   end
 
   def not_found
-    render :file => "#{Rails.root}/public/404.html", :status => 404
+    render :file => "#{Rails.root}/public/404.html"
   end
 
   private
