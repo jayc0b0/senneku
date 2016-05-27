@@ -19,6 +19,11 @@ class UploadsController < ApplicationController
     # Set click count to 0
     @upload.click_count = 0
 
+    ## SUPER HACKY WAY TO FIX DOUBLE INCREMENT BUG
+    ## (SETS CLICK LIMIT TO DOUBLE VALUE TO GET AROUND IT)
+    ## PLZ FIX AT SOME POINT
+    @upload.click_limit *= 2 if @upload.track_clicks = true
+
     if @upload.save
       flash[:success] = "File uploaded"
       redirect_to upload_path(@upload)
