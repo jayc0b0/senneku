@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526053533) do
+ActiveRecord::Schema.define(version: 20160527175728) do
 
   create_table "uploads", force: :cascade do |t|
-    t.string   "filename"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "upload_file_name"

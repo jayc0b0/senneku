@@ -12,7 +12,7 @@
  
   <% @uploads.each do |upload| %>
     <tr>
-      <td><%= upload.filename %></td>
+      <td><%= upload.upload_file_name %></td>
       <td><%= upload.delete_in %></td>
       <td><%= upload.delete_on %></td>
       <td><%= upload.track_clicks %></td>

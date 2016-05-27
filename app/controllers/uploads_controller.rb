@@ -47,6 +47,6 @@ class UploadsController < ApplicationController
   private
 
   def upload_params
-    params.require(:upload).permit(:upload, :filename, :delete_in, :track_clicks, :click_limit)
+    params.require(:upload).permit(:upload, :delete_in, :track_clicks, :click_limit)
   end
 end

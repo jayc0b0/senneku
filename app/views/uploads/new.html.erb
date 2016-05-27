@@ -12,13 +12,6 @@
   </br>
 
   <div class="form-group">
-    <%= f.label :filename %>
-    <%= f.text_field :filename, class: 'form-control' %>
-  </div>
-
-  </br>
-
-  <div class="form-group">
     <%= f.label :delete_in, "Days until deletion\n(Default is 14)" %>
     <%= f.number_field :delete_in, min: 1, max: 90, class: 'form-control' %>
   </div>

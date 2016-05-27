@@ -1,7 +1,7 @@
 class Upload < ActiveRecord::Base
   has_attached_file :upload,
-    :url => "/system/:class/:attachment/:md5_hash/:sha256_hash/:filename",
-    :path => ":rails_root/public/system/:class/:attachment/:md5_hash/:sha256_hash/:filename"
+    :url => "/system/:class/:attachment/:md5_hash/:sha256_hash/:id/:filename",
+    :path => ":rails_root/public/system/:class/:attachment/:md5_hash/:sha256_hash//:id/:filename"
 
   # Hash file for URL/path:
   # foo.bar/uploads/MD5/SHA256/ID
