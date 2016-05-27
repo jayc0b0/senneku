@@ -28,20 +28,21 @@ class UploadsController < ApplicationController
   end
 
   def destroy
-    @upload = Upload.find(params[:id])
+    @upload = Upload.find_by(params[:id])
     @upload.destroy
     flash[:success] = "File deleted"
     redirect_to uploads_path
   end
 
   def show
-    @upload = Upload.find(params[:id])
+    @upload = Upload.find_by(params[:id])
   end
 
   def download
-    @upload = Upload.find(params[:id])
+    @upload = Upload.find_by(params[:id])
     # Increment click count
     @upload.click_count += 1
+    @upload.save
     # Check if click count is above limit
     if @upload.click_count > @upload.click_limit
       not_found
@@ -52,7 +53,7 @@ class UploadsController < ApplicationController
   end
 
   def not_found
-    raise ActionController::RoutingError.new('Not Found')
+    render :file => "#{Rails.root}/public/404.html", :status => 404
   end
 
   private
