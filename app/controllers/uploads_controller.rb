@@ -39,6 +39,9 @@ class UploadsController < ApplicationController
   end
 
   def download
+    @upload = Upload.find(params[:id])
+    file_path = "#{@upload.upload.path}"
+    send_file(file_path)
   end
 
   private
