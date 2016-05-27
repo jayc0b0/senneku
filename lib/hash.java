@@ -33,12 +33,12 @@ public class hash {
     if (algo == 1) {
       String algorithm = "MD5";
       String hash = bytesToHex(hash(file, algorithm));
-      System.out.println(hash);
+      System.out.print(hash);
     }
     else if (algo == 2) {
       String algorithm = "SHA-256";
       String hash = bytesToHex(hash(file, algorithm));
-      System.out.println(hash);
+      System.out.print(hash);
     }
       
   }
