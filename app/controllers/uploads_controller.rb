@@ -9,6 +9,7 @@ class UploadsController < ApplicationController
 
   def create
     @upload = Upload.new(upload_params)
+    # Before save
     # Set default deletion time
     @upload.delete_in = 14 if @upload.delete_in.nil?
     @upload.delete_on = Time.now + @upload.delete_in.days
@@ -30,7 +31,7 @@ class UploadsController < ApplicationController
     @upload = Upload.find(params[:id])
     @upload.destroy
     flash[:success] = "File deleted"
-    redirect_to root_path
+    redirect_to uploads_path
   end
 
   def show
