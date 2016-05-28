@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'frontend/home'
+  get 'uploads/download'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,14 +10,16 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'uploads/download' => 'uploads#download'
   
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :uploads, only: [:new, :create, :index, :destroy, :show, :download]
+  resources :uploads do
+    get :download, on: :member, to: 'uploads#download'
+  end
+  resources :uploads, only: [:new, :create, :index, :destroy, :shows]
 
   # Example resource route with options:
   #   resources :products do

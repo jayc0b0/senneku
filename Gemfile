@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ## CUSTOM GEMS
 gem 'animate.css-rails',    '~> 3.2.0' # Used for transitions
 gem 'paperclip',            '~> 4.3.6' # Used for files
-gem 'obfuscate_id'                     # Used for ID obfuscation
 gem 'whenever',     :require => false  # Used for schedulin
 
 ## DEFAULT GEMS
