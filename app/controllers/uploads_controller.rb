@@ -20,11 +20,9 @@ class UploadsController < ApplicationController
     @upload.click_count = 0
 
     ## TESTING SETTINGS
-    if @upload.upload_file_name == "test.jpg"
-      # Set click_count > click_limit
-      @upload.click_count = 5
-      @upload.click_limit = 2
-    end
+    # if @upload.upload_file_name == "test.jpg"
+    # ## DO THINGS
+    # end
 
     ## SUPER HACKY WAY TO FIX DOUBLE INCREMENT BUG
     ## (SETS CLICK LIMIT TO DOUBLE VALUE TO GET AROUND IT)
@@ -43,7 +41,7 @@ class UploadsController < ApplicationController
     @upload = Upload.find(params[:id])
     @upload.destroy
     flash[:success] = "File deleted"
-    redirect_to root_path
+    not_found
   end
 
   def show
@@ -57,7 +55,6 @@ class UploadsController < ApplicationController
       # Check expiration date
       if @upload.delete_on.past?
         destroy
-        not_found
       end
       # Increment click count
       @upload.click_count += 1
@@ -65,7 +62,6 @@ class UploadsController < ApplicationController
       # Check if click count is above limit
       if @upload.click_count > @upload.click_limit
         destroy
-        not_found
       else
         file_path = "#{@upload.upload.path}"
         send_file(file_path)

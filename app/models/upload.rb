@@ -1,8 +1,8 @@
 class Upload < ActiveRecord::Base
   # Attachment
   has_attached_file :upload,
-    :url => "/system/:class/:attachment/:md5_hash/:sha256_hash/:id/:filename",
-    :path => ":rails_root/public/system/:class/:attachment/:md5_hash/:sha256_hash/:id/:filename"
+    :url => "/system/:class/:attachment/:id/:md5_hash/:sha256_hash/:filename",
+    :path => ":rails_root/public/system/:class/:attachment/:id/:md5_hash/:sha256_hash/:filename"
 
   # Hash file for URL/path:
   # foo.bar/uploads/MD5/SHA256/ID
@@ -11,6 +11,11 @@ class Upload < ActiveRecord::Base
   # Attachment validations
   validates_attachment_presence :upload
   do_not_validate_attachment_file_type :upload
+
+  # Override to_param for custom URLs
+  def to_param
+    "#{id}--#{upload_file_name}--#{md5_hash}--#{sha256_hash}"
+  end
 
   private
 
