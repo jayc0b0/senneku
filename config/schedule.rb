@@ -22,4 +22,6 @@
 every 1.day, :at => '12:00 am' do
   rake "cleanup:expired_files"
   rake "cleanup:click_limits"
+  rake "paperclip:clean"
+  rake "paperclip:find_broken_attachments"
 end
