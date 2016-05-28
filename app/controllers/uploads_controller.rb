@@ -21,7 +21,9 @@ class UploadsController < ApplicationController
 
     ## TESTING SETTINGS
     if @upload.upload_file_name == "test.jpg"
-      @upload.delete_on = Time.now - 1.day
+      # Set click_count > click_limit
+      @upload.click_count = 5
+      @upload.click_limit = 2
     end
 
     ## SUPER HACKY WAY TO FIX DOUBLE INCREMENT BUG
